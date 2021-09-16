@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -16,8 +17,15 @@ public class Main {
         System.out.println(json);
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        // Faiblement typé
         int xp = objectMapper.readTree(json).get("base_experience").asInt();
         System.out.println(xp);
+
+        // Fortement typé
+        Pokemon pokemon = objectMapper.readValue(json, Pokemon.class);
+        System.out.println(pokemon.getBase_experience());
     }
 
     public static String run(String url) throws IOException {
