@@ -23,11 +23,11 @@ public class Main {
         // Faiblement typé
         int xp = objectMapper.readTree(json).get("base_experience").asInt();
         Pokemon pok = new Pokemon();
-        pok.setBase_experience(objectMapper.readTree(json).get("base_experience").asInt());
+        pok.setBaseExperience(objectMapper.readTree(json).get("base_experience").asInt());
 
         // Fortement typé
         Pokemon pokemon = objectMapper.readValue(json, Pokemon.class);
-        System.out.println(pokemon.getBase_experience());
+        System.out.println(pokemon.getBaseExperience());
         System.out.println(pokemon.getForms().length);
 
         objectMapper.writeValue(new File("pokemon.json"),pokemon);
