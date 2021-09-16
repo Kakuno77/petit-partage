@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Main {
@@ -28,6 +29,8 @@ public class Main {
         Pokemon pokemon = objectMapper.readValue(json, Pokemon.class);
         System.out.println(pokemon.getBase_experience());
         System.out.println(pokemon.getForms().length);
+
+        objectMapper.writeValue(new File("pokemon.json"),pokemon);
     }
 
     public static String run(String url) throws IOException {
