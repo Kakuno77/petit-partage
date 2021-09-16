@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -11,7 +12,12 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println(":)");
 
-        System.out.println(run("https://pokeapi.co/api/v2/pokemon/ditto"));
+        String json = run("https://pokeapi.co/api/v2/pokemon/ditto");
+        System.out.println(json);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        int xp = objectMapper.readTree(json).get("base_experience").asInt();
+        System.out.println(xp);
     }
 
     public static String run(String url) throws IOException {
