@@ -21,11 +21,13 @@ public class Main {
 
         // Faiblement typé
         int xp = objectMapper.readTree(json).get("base_experience").asInt();
-        System.out.println(xp);
+        Pokemon pok = new Pokemon();
+        pok.setBase_experience(objectMapper.readTree(json).get("base_experience").asInt());
 
         // Fortement typé
         Pokemon pokemon = objectMapper.readValue(json, Pokemon.class);
         System.out.println(pokemon.getBase_experience());
+        System.out.println(pokemon.getForms().length);
     }
 
     public static String run(String url) throws IOException {
